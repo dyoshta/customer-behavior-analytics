@@ -1,6 +1,12 @@
 
 
 def normalize_column_names(df):
+    """
+    Renames raw dataset columns to snake_case format.
+
+    :param df: raw dataframe with original column names.
+    :return: dataframe with normalized column names (df).
+    """
     df = df.rename(columns={
         "InvoiceNo": "invoice_no",
         "StockCode": "stock_code",
@@ -14,25 +20,25 @@ def normalize_column_names(df):
     return df
 
 def remove_duplicates(df):
-    before = len(df)
+    """
+    Removes fully duplicated rows from the dataframe.
 
-    df = df.drop_duplicates()
-
-    after = len(df)
-
-    print(f"Removed duplicate rows: {before - after}")
-    return df
+    :param df: input dataframe.
+    :return: dataframe without duplicate rows.
+    """
+    return df.drop_duplicates()
 
 def handle_missing(df):
-    print("Missing values before: ")
-    print(df.isna().sum())
-    before = len(df)
+    """
+    Removes rows without customer_id.
 
-    df = df.dropna(
-        subset=["customer_id"]
-    )
-    after = len(df)
-    print(f"\nRemoved rows with missing customer_id: {before - after}")
-    print("\nMissing values AFTER: ")
-    print(df.isna().sum())
-    return df
+    Rows without customer_id are removed, because customer-level analysis
+    requires a valid customer identifier.
+
+    :param df: input dataframe.
+    :return: dataframe without missing customer_id values.
+    """
+    return df.dropna(subset=["customer_id"])
+
+# TODO: def remove_invalid_rows(df):
+
