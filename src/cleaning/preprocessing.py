@@ -1,3 +1,4 @@
+import pandas as pd
 
 
 def normalize_column_names(df):
@@ -40,5 +41,41 @@ def handle_missing(df):
     """
     return df.dropna(subset=["customer_id"])
 
-# TODO: def remove_invalid_rows(df):
+def remove_invalid_rows(df):
+    """
+    Removes rows containing invalid transaction values.
+
+    Rows with non-positive quantity or unit_price are removed
+    because they do not represent valid sales transactions.
+
+    :param df: input dataframe.
+    :return: dataframe containing only valid transactions.
+    """
+    return df[
+        (df["quantity"] > 0) &
+        (df["unit_price"] > 0)
+    ]
+def fix_datatypes(df):
+    """
+    Explicitly converts dataframe columns to expected data types.
+
+    :param df: input dataframe.
+    :return: dataframe with corrected data types.
+    """
+    df = df.copy()
+
+    df["invoice_no"] = df["invoice_no"].astype(str)
+    df["stock_code"] = df["stock_code"].astype(str)
+    df["description"] = df["description"].astype(str)
+    df["quantity"] = df["quantity"].astype(int)
+    df["unit_price"] = df["unit_price"].astype(float)
+    df["customer_id"] = df["customer_id"].astype(int)
+    df["country"] = df["country"].astype(str)
+
+    df["invoice_date"] = pd.to_datetime(df["invoice_date"])
+
+    return df
+
+
+# TODO def add_total_price(df):
 
