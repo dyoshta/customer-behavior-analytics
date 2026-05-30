@@ -96,14 +96,12 @@ python src/main.py compare-stats
 1. Rename columns to snake_case
 2. Remove fully duplicated rows
 3. Remove rows with missing `customer_id`
-4. Save the cleaned dataset to `data/processed/`
+4. Remove invalid rows where quantity <= 0 or unit_price <= 0
+5. Convert columns to expected data types
+6. Add total_price column
+7. Save cleaned dataset to data/processed/
 
 ## Next Steps
-- remove invalid rows:
-  - `quantity <= 0`
-  - `unit_price <= 0`
-- fix data types
-- add `total_price`
 - load cleaned data into PostgreSQL
 - write SQL analytics queries
 - build Power BI dashboard
