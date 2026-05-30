@@ -1,5 +1,3 @@
-import pandas as pd
-
 def basic_stats(df, title):
     """
     Prints basic dataframe statistics.

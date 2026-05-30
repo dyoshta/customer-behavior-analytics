@@ -1,7 +1,5 @@
 from cleaning.preprocessing import normalize_column_names, remove_duplicates, handle_missing, remove_invalid_rows, \
     fix_datatypes, add_total_price
-from config import PROCESSED_DATA_PATH
-
 
 def run_cleaning(df):
     """
