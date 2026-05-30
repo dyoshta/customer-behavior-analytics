@@ -62,8 +62,6 @@ def fix_datatypes(df):
     :param df: input dataframe.
     :return: dataframe with corrected data types.
     """
-    df = df.copy()
-
     df["invoice_no"] = df["invoice_no"].astype(str)
     df["stock_code"] = df["stock_code"].astype(str)
     df["description"] = df["description"].astype(str)
@@ -76,6 +74,16 @@ def fix_datatypes(df):
 
     return df
 
+def add_total_price(df):
+    """
+    Creates a total_price column.
 
-# TODO def add_total_price(df):
+    :param df: input dataframe.
+    :return: dataframe with a total_price column
+    """
+    df["total_price"] = (
+        df["quantity"]
+        * df["unit_price"]
+    )
+    return df
 

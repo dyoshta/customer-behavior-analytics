@@ -13,6 +13,7 @@ def basic_stats(df, title):
     - first rows
 
     :param df: dataframe to inspect.
+    :param title: title displayed above the statistics output.
     """
     print(f"\n === {title} ===")
 
